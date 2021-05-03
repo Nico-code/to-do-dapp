@@ -1,0 +1,36 @@
+{
+  "name": "crypto-bet",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:dev": "parcel index.html",
+    "start": "parcel index.html",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html && cp _redirects dist/_redirects"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiq/crypto-bet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiq/crypto-bet/issues"
+  },
+  "homepage": "https://github.com/santiq/crypto-bet#readme",
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.5",
+    "parcel": "2.0.0-nightly.649"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.3",
+    "vue-router-multiguard": "^1.0.3",
+    "vuex": "^4.0.0"
+  }
+}
