@@ -1,47 +1,27 @@
 <template>
-  <Layout />
+  <Layout>
+    <Lottery />
+  </Layout>
 </template>
 
 <script>
+import Lottery from './views/lottery.vue'
+
 import routes from './routes.vue'
-import { mapActions, mapState} from 'vuex'
 import Layout from './components/Layout.vue';
+
 // @ts-check
 export default {
-  components: { Layout },
+  components: { Layout, Lottery },
   data() {
     return {
       routes: routes,
-      listRoutes:[],
+      listRoutes: [],
       userType: "",
     };
   },
-  methods:{
-    ...mapActions('user', ['removeUser']),
-    Logout(){
-      sessionStorage.removeItem("user");
-      sessionStorage.removeItem("token");
-      this.removeUser()
-      this.$router.push('/')
-      this.userType = ""
-
-    },
-    userLogged(data) {
-      this.userType = data.userType
-    }
-  },
-  computed:{
-    ...mapState('user',['user'])
-  },
-  created(){
-    let userString = sessionStorage.getItem('user')
-    if(userString){
-      let user = JSON.parse(userString)
-      this.userType = user.role
-    }
-  },
-  updated(){
-  }
-
+  methods: {},
+  computed: {},
+  created() {},
 };
 </script>

@@ -1,17 +1,24 @@
 <script>
 // @ts-check
 import { createWebHistory, createRouter } from "vue-router";
-import VueRouterMultiguard from 'vue-router-multiguard'
-import home from "./views/home.vue";
+import lottery from "./views/lottery.vue";
+import futbol from "./views/futbol.vue";
 
-import { isLogin, isAdmin } from './services/middlewares'
-
-
-const routes =[
+const routes = [
     {
 			path: "/",
-			name: "Home",
-			component: home,
+			name: "Lottery",
+			component: lottery,
+    },
+    {
+			path: "/lottery",
+			name: "Lottery",
+			component: lottery,
+    },
+    {
+			path: "/futbol",
+			name: "Futbol",
+			component: futbol,
     }
   ]
 
