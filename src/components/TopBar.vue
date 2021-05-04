@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
-          <li class="nav-item" v-if="!walletAddress">
+          <li class="nav-item cursor-pointer" v-if="!walletAddress">
             <a class="nav-link btn-magnify" @click="connect">
               <i class="fas fa-wallet"></i>
               <p style="margin-left: 10px;">
