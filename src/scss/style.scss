@@ -4,4 +4,33 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+
+  color: #66615b;
+  font-size: 14px;
+  background-color: #f4f3ef;
+  font-family: 'Muli', Arial, sans-serif;
+}
+.main-panel > .footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer ul li a {
+  text-transform: none;
+}
+
+.footer  {
+  color: #66615b;
+  font-size: 18px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.footer .heart {
+    color: #EB5E28;
+}
+
+footer nav ul a:not(.btn) {
+    color: #66615b;
+    display: block;
+    margin-bottom: 3px;
 }
