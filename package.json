@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/santiq/crypto-bet#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-nightly.651",
-    "@parcel/transformer-vue": "^2.0.0-nightly.2273",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@parcel/transformer-sass": "2.0.0-nightly.651",
+    "@parcel/transformer-vue": "2.0.0-nightly.2273",
+    "@vue/compiler-sfc": "3.0.5",
     "parcel": "2.0.0-nightly.649"
   },
   "dependencies": {
