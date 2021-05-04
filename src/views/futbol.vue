@@ -7,11 +7,11 @@
           </div>
           <div class="card-body">
             <ul class="list-unstyled team-members">
-              <li v-for="game in games" :key="game._id">
+              <li v-for="(game, i) in games" :key="game._id">
                 <div class="row">
                   <div class="col-md-1 col-1">
                     <div class="avatar">
-                      <img src="https://picsum.photos/200" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                      <img :src="`https://picsum.photos/300?random=${i+1}`" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                   </div>
                   <div class="col-md-10 col-10">
