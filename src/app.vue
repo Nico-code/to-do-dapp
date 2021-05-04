@@ -1,18 +1,16 @@
 <template>
   <Layout>
-    <Lottery />
+    <router-view> </router-view>
   </Layout>
 </template>
 
 <script>
-import Lottery from './views/lottery.vue'
-
 import routes from './routes.vue'
 import Layout from './components/Layout.vue';
 
 // @ts-check
 export default {
-  components: { Layout, Lottery },
+  components: { Layout },
   data() {
     return {
       routes: routes,
@@ -22,6 +20,6 @@ export default {
   },
   methods: {},
   computed: {},
-  created() {},
+  mounted() {},
 };
 </script>

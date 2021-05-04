@@ -12,7 +12,7 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="active">
-        <a href="/bets">
+        <a href="/lottery">
           <i class="fas fa-ticket-alt"></i>
           <p>Loterias</p>
         </a>

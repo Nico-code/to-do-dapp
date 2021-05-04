@@ -18,8 +18,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link btn-magnify" href="javascript:;">
+          <li class="nav-item" v-if="!walletAddress">
+            <a class="nav-link btn-magnify" @click="connect">
               <i class="fas fa-wallet"></i>
               <p style="margin-left: 10px;">
                 <span class="d-md-block">Connect</span>
@@ -31,3 +31,24 @@
     </div>
   </nav>
 </template>
+
+<script>
+import wallet from '../services/wallet';
+
+export default {
+  name: '',
+  data() {
+    return {
+      walletAddress: '',
+    }
+  },
+  methods: {
+    async connect() {
+      this.walletAddress = await wallet.connect();
+    }
+  },
+  mounted() {
+
+  }
+}
+</script>
