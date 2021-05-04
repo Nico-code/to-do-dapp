@@ -26,6 +26,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item" v-else>
+            <a class="nav-link btn-magnify">
+              <i class="fas fa-wallet"></i>
+              <p style="margin-left: 10px;">
+                <span class="d-md-block">{{ walletAddress }}</span>
+              </p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

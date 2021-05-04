@@ -11,18 +11,22 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="active">
-        <a href="/lottery">
-          <i class="fas fa-ticket-alt"></i>
-          <p>Loterias</p>
-        </a>
-      </li>
-      <li>
-        <a href="/futbol">
-          <i class="fas fa-futbol"></i>
-          <p>Partidos</p>
-        </a>
-      </li>
+      <router-link to="/lottery" custom v-slot="{ isActive, navigate, href }">
+        <li :class="{ 'active': isActive }">
+          <a :href="href" @click="navigate">
+            <i class="fas fa-ticket-alt"></i>
+            <p>Loterias</p>
+          </a>
+        </li>
+      </router-link>
+      <router-link to="/futbol" custom v-slot="{ isActive, navigate, href }">
+        <li :class="{ 'active': isActive }">
+          <a :href="href" @click="navigate">
+            <i class="fas fa-futbol"></i>
+            <p>Partidos</p>
+          </a>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
