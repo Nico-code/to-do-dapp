@@ -85,10 +85,17 @@
             </h4>
           </div>
           <div class="card-body">
-            <div class="form-group"> Last winning ticket: {{ lastWinningTicket }} </div>
-            <div class="form-group">
-              <input class="form-control" :disabled="!wallet" v-model="myTicket" type="text" placeholder="Write a ticket number" />
-              <button class="btn btn-success" :disabled="!wallet" @click="buyTicket"> Buy </button>
+            <div class="col-2">
+              <div class="card" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
+                <div class="card-header">
+                  <h4 class="card-title">
+                    {{ ticket._id }} - {{ ticket.name }}
+                  </h4>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-success" :disabled="!wallet" @click="() => buyTicket(ticket)"> Buy </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -123,34 +130,6 @@
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Loterias</h4>
-          </div>
-          <div class="card-body">
-            <ul class="list-unstyled team-members">
-              <li v-for="(lottery, i) in lotteries" :key="lottery._id">
-                <div class="row">
-                  <div class="col-md-1 col-1">
-                    <div class="avatar">
-                      <img :src="`https://picsum.photos/300?random=${i+1}`" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-10">
-                    {{ lottery.name }}
-                    <br />
-                    <span :class="lottery.stateClass"><small>{{ lottery.state }}</small></span>
-                  </div>
-                  <div class="col-md-1 col-1 text-right">
-                    <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fas fa-coins"></i></button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
 </template>
 <script>
@@ -159,26 +138,109 @@ import lotteryService from '../services/lottery';
 export default {
   data() {
     return {
-      lotteries: [
-        {
-          _id: 1,
-          name: 'Quiniela de la Ciudad',
-          state: 'Offline',
-          stateClass: 'text-muted'
-        },
-        {
-          _id: 2,
-          name: 'Tombola de Entre Rios',
-          state: 'Available',
-          stateClass: 'text-success'
-        },
-        {
-          _id: 3,
-          name: 'Quiniela de Santa Fe',
-          state: 'Busy',
-          stateClass: 'text-danger'
-        },
-      ],
+      // Not so funny to write them by hand
+      lotteryTickets: [
+        { _id: "00", name: "Huevos" },
+        { _id: "01", name: "Agua" },
+        { _id: "02", name: "Niño" },
+        { _id: "03", name: "San Cono" },
+        { _id: "04", name: "La Cama" },
+        { _id: "05", name: "Gato" },
+        { _id: "06", name: "Perro" },
+        { _id: "07", name: "Revolver" },
+        { _id: "08", name: "Incendio" },
+        { _id: "09", name: "Arroyo" },
+        { _id: "10", name: "La leche" },
+        { _id: "11", name: "Palito" },
+        { _id: "12", name: "Soldado" },
+        { _id: "13", name: "La yeta" },
+        { _id: "14", name: "Borracho" },
+        { _id: "15", name: "Niña bonita" },
+        { _id: "16", name: "Anillo" },
+        { _id: "17", name: "Desgracia" },
+        { _id: "18", name: "Sangre" },
+        { _id: "19", name: "Pescado" },
+        { _id: "20", name: "La fiesta" },
+        { _id: "21", name: "La mujer" },
+        { _id: "22", name: "El loco" },
+        { _id: "23", name: "Mariposa" },
+        { _id: "24", name: "Caballo" },
+        { _id: "25", name: "Gallina" },
+        { _id: "26", name: "La misa" },
+        { _id: "27", name: "El peine" },
+        { _id: "28", name: "El cerro" },
+        { _id: "29", name: "San Pedro" },
+        { _id: "30", name: "Santa Rosa" },
+        { _id: "31", name: "La luz" },
+        { _id: "32", name: "Dinero" },
+        { _id: "33", name: "Cristo" },
+        { _id: "34", name: "Cabeza" },
+        { _id: "35", name: "Pajarito" },
+        { _id: "36", name: "Manteca" },
+        { _id: "37", name: "Dentista" },
+        { _id: "38", name: "Aceite" },
+        { _id: "39", name: "Lluvia" },
+        { _id: "40" , name: "Cura "} ,
+        { _id: "41" , name: "Cucho "} ,
+        { _id: "42" , name: "Zapatilla "} ,
+        { _id: "43" , name: "Balcón "} ,
+        { _id: "44" , name: "La cárcel "} ,
+        { _id: "45" , name: "El vino "} ,
+        { _id: "46" , name: "Tomates "} ,
+        { _id: "47" , name: "Muerto "} ,
+        { _id: "48" , name: "Muerto habla "} ,
+        { _id: "49" , name: "La carne "} ,
+        { _id: "50" , name: "El pan "} ,
+        { _id: "51" , name: "Serrucho "} ,
+        { _id: "52" , name: "Madre "} ,
+        { _id: "53" , name: "El barco "} ,
+        { _id: "54" , name: "La vaca "} ,
+        { _id: "55" , name: "Los gallegos "} ,
+        { _id: "56" , name: "La caída "} ,
+        { _id: "57" , name: "Jorabajo "} ,
+        { _id: "58" , name: "Ahogado "} ,
+        { _id: "59" , name: "Planta "} ,
+        { _id: "60" , name: "Virgen "} ,
+        { _id: "61" , name: "Escopeta "} ,
+        { _id: "62" , name: "Inundacion "} ,
+        { _id: "63" , name: "Casamiento "} ,
+        { _id: "64" , name: "Llanto "} ,
+        { _id: "65" , name: "Cazador "} ,
+        { _id: "66" , name: "Lombrices "} ,
+        { _id: "67" , name: "Víbora "} ,
+        { _id: "68" , name: "Sobrinos "} ,
+        { _id: "69" , name: "Vicios "} ,
+        { _id: "70" , name: "Muerto sueño "} ,
+        { _id: "71" , name: "Excrementos "} ,
+        { _id: "72" , name: "Sorpresa "} ,
+        { _id: "73" , name: "Hospital "} ,
+        { _id: "74" , name: "Negros "} ,
+        { _id: "75" , name: "Payaso "} ,
+        { _id: "76" , name: "Llamas "} ,
+        { _id: "77" , name: "Las piernas "} ,
+        { _id: "78" , name: "Ramera "} ,
+        { _id: "79" , name: "Ladrón "} ,
+        { _id: "80" , name: "La bocha "} ,
+        { _id: "81" , name: "Flores "} ,
+        { _id: "82" , name: "Pelea "} ,
+        { _id: "83" , name: "Mal tiempo "} ,
+        { _id: "84" , name: "Iglesia "} ,
+        { _id: "85" , name: "Linterna "} ,
+        { _id: "86" , name: "Humo "} ,
+        { _id: "87" , name: "Piojos "} ,
+        { _id: "88" , name: "El Papa "} ,
+        { _id: "89" , name: "La rata "} ,
+        { _id: "90" , name: "El miedo "} ,
+        { _id: "91" , name: "Excusado "} ,
+        { _id: "92" , name: "Médico "} ,
+        { _id: "93" , name: "Enamorado "} ,
+        { _id: "94" , name: "Cementerio "} ,
+        { _id: "95" , name: "Anteojos "} ,
+        { _id: "96" , name: "Marido "} ,
+        { _id: "97" , name: "La mesa "} ,
+        { _id: "98" , name: "Lavandera "} ,
+        { _id: "99" , name: "Hermanos" }
+        ],
       newTicketCost: 0,
       ticketCost: 0,
       winningPrize: 0,
