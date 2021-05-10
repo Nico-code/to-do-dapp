@@ -75,6 +75,23 @@ module.exports = {
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
+    kovan: {
+      provider: () => new HDWalletProvider({
+        mnemonic: {
+          phrase: mnemonicPhrase
+        },
+        providerOrUrl: `https://kovan.infura.io/v3/${infuraProjectId}`,
+        numberOfAddresses: 1,
+        shareNonce: true,
+        chainId: 42,
+        derivationPath: "m/44'/1'/0'/0/"
+      }),
+      network_id: 42,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
     // Useful for private networks
     // private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),

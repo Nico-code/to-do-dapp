@@ -8,8 +8,8 @@
     "blockchain": "ganache-cli --db blockchain -d -i 123456",
     "dev": "parcel index.html",
     "compile-contracts": "truffle compile",
-    "deploy-contracts:test": "truffle migrate --network ropsten",
-    "deploy-contracts:prod": "truffle migrate --network ropsten",
+    "deploy-contracts:test": "truffle migrate --network kovan",
+    "deploy-contracts:prod": "truffle migrate --network kovan",
     "build:local": "parcel build index.html && cp _redirects dist/_redirects",
     "build": "npm run compile-contracts && npm run deploy-contracts:test && parcel build index.html && cp _redirects dist/_redirects"
   },
