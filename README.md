@@ -12,14 +12,20 @@ npm install
 npm run start
 ```
 
-# Run ganache
+# Run ganache (local blockchain)
+## Make sure to create the blockchain folder first
 
 ```
-ganache-cli
+mkdir -p ./blockchain
+```
+
+## Run this npm script to always have the same addresses and balances
+```
+npm run blockchain
 ```
 
 # Run truffle compile && migrate
-````
+```
 truffle compile && truffle migrate
 ```
 
@@ -29,4 +35,18 @@ truffle compile && truffle migrate
 
 ```
 npm run build
+```
+
+## Deploy to public (test) blockchain
+
+### it is required to set these env vars:
+
+- INFURA_KEY
+
+- INFURA_PROJECT_ID
+
+- MNEMONIC
+
+```
+truffle migrate --network ropsten
 ```
