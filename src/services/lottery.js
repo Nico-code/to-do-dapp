@@ -1,4 +1,4 @@
-import Lottery from '../../build/contracts/lottery.json';
+import Lottery from '../../build/contracts/Lottery.json';
 import wallet from './wallet';
 const LotteryContractABI = {
   async getConstractInstance() {
