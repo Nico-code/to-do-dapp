@@ -1,19 +1,19 @@
 <script>
 // @ts-check
 import { createWebHistory, createRouter } from "vue-router";
-import lottery from "./views/lottery.vue";
+import lotteries from "./views/lotteries.vue";
 import futbol from "./views/futbol.vue";
 
 const routes = [
     {
 			path: "/",
 			name: "Lottery",
-			component: lottery,
+			component: lotteries,
     },
     {
-			path: "/lottery",
-			name: "Lottery",
-			component: lottery,
+			path: "/lotteries",
+			name: "lotteries",
+			component: lotteries,
     },
     {
 			path: "/futbol",

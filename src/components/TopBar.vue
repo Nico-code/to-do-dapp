@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
-          <li class="nav-item cursor-pointer" v-if="!walletAddress">
+          <li class="nav-item cursor-pointer" v-if="!wallet">
             <a class="nav-link btn-magnify" @click="connect">
               <i class="fas fa-wallet"></i>
               <p style="margin-left: 10px;">
@@ -30,7 +30,7 @@
             <a class="nav-link btn-magnify">
               <i class="fas fa-wallet"></i>
               <p style="margin-left: 10px;">
-                <span class="d-md-block">{{ walletAddress }}</span>
+                <span class="d-md-block">{{ wallet }}</span>
               </p>
             </a>
           </li>
@@ -41,19 +41,20 @@
 </template>
 
 <script>
-import wallet from '../services/wallet';
+import { mapActions, mapState } from 'vuex'
+import walletService from '../services/wallet';
 
 export default {
-  name: '',
-  data() {
-    return {
-      walletAddress: '',
-    }
-  },
+  name: 'TopBar',
   methods: {
+    ...mapActions('wallet', ['setWallet']),
     async connect() {
-      this.walletAddress = await wallet.connect();
-    }
+      const address = await walletService.connect();
+      this.setWallet({ address });
+    },
+  },
+  computed: {
+    ...mapState('wallet', ['wallet']),
   },
   mounted() {
 
