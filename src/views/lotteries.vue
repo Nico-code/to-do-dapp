@@ -12,7 +12,7 @@
             <div class="col-xs-7">
               <div class="numbers">
                 <p>Lottery Prize</p>
-                Ether {{ winningPrize }}
+                Ether {{ lottery.prize }}
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="col-xs-7">
               <div class="numbers">
                 <p>Last winning ticket</p>
-                <p> {{ lastWinningTicket }} </p>
+                <p> {{ lottery.winningTicket }} </p>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
             <div class="col-xs-7">
               <div class="numbers">
                 <p>Ticket Cost</p>
-                Ether {{ ticketCost }}
+                Ether {{ lottery.ticketCost }}
               </div>
             </div>
           </div>
@@ -76,61 +76,61 @@
       </div>
     </div>
   </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              Tickets
-            </h4>
-          </div>
-          <div class="card-body">
-            <div class="col-2">
-              <div class="card" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
-                <div class="card-header">
-                  <h4 class="card-title">
-                    {{ ticket._id }} - {{ ticket.name }}
-                  </h4>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-success" :disabled="!wallet" @click="() => buyTicket(ticket)"> Buy </button>
-                </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            Tickets
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="col-2">
+            <div class="card" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
+              <div class="card-header">
+                <h4 class="card-title">
+                  {{ ticket._id }} - {{ ticket.name }}
+                </h4>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" :disabled="!wallet" @click="() => buyTicket(ticket)"> Buy </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              Admin Commands
-            </h4>
+    </div>
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            Admin Commands
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <button class="btn btn-success" :disabled="!wallet" @click="getTicketCost"> Get ticket cost </button>
           </div>
-          <div class="card-body">
-            <div class="form-group">
-              <button class="btn btn-success" :disabled="!wallet" @click="getTicketCost"> Get ticket cost </button>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-success" :disabled="!wallet" @click="getWinningTicket"> Get last winning ticket </button>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-success" :disabled="!wallet" @click="getLotteryPrize"> Get lottery prize </button>
-            </div>
-            <div class="form-group">
-              <label>Set ticket cost (in Ether)</label>
-              <input class="form-control" :disabled="!wallet" v-model="newTicketCost" type="text" placeholder="cost" />
-              <button class="btn btn-danger" :disabled="!wallet" @click="setTicketCost"> Save </button>
-            </div>
-            <div class="form-group">
-              <label>Set winning ticket</label>
-              <input class="form-control" :disabled="!wallet" v-model="winningTicket" type="text" placeholder="ticket" />
-              <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Save </button>
-            </div>
+          <div class="form-group">
+            <button class="btn btn-success" :disabled="!wallet" @click="getWinningTicket"> Get last winning ticket </button>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success" :disabled="!wallet" @click="getLotteryPrize"> Get lottery prize </button>
+          </div>
+          <div class="form-group">
+            <label>Set ticket cost (in Ether)</label>
+            <input class="form-control" :disabled="!wallet" v-model="newTicketCost" type="text" placeholder="cost" />
+            <button class="btn btn-danger" :disabled="!wallet" @click="setTicketCost"> Save </button>
+          </div>
+          <div class="form-group">
+            <label>Set winning ticket</label>
+            <input class="form-control" :disabled="!wallet" v-model="winningTicket" type="text" placeholder="ticket" />
+            <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Save </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 <script>
 import { mapState } from 'vuex';
@@ -243,12 +243,8 @@ export default {
         { _id: "99" , name: "Hermanos" }
         ],
       newTicketCost: 0,
-      ticketCost: 0,
-      winningPrize: 0,
       tickets: [],
-      myTicket: '',
       winningTicket: '',
-      lastWinningTicket: '',
     }
   },
   methods: {
@@ -260,12 +256,11 @@ export default {
       const lotteryPriceWei = await lotteryService.getLotteryPrize();
       this.winningPrize = window.web3.utils.fromWei(lotteryPriceWei, 'ether');
     },
-    async buyTicket() {
+    async buyTicket(_ticket) {
       try {
         console.log('Calling buy ticket');
-        await lotteryService.buyTicket(this.myTicket)
-        window.alert(`Ticket ${this.myTicket} bought successfully`);
-        this.myTicket = '';
+        await lotteryService.buyTicket(_ticket)
+        window.alert(`Ticket ${_ticket} bought successfully`);
       } catch(e) {
         console.log('Error buying ticket');
         console.log(e);
@@ -276,7 +271,6 @@ export default {
         console.log('Calling set winning ticket');
         await lotteryService.setWinningTicket(this.winningTicket);
         window.alert(`Winning ticket set successfully`);
-        this.myTicket = '';
         this.winningTicket = '';
       } catch(e) {
         console.log('Error setting winning ticket');
@@ -297,7 +291,8 @@ export default {
     },
   },
   computed: {
-    ...mapState('wallet', ['wallet'])
+    ...mapState('wallet', ['wallet']),
+    ...mapState('lottery', ['lottery']),
   }
 }
 </script>
