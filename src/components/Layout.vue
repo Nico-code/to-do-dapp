@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Footer from './footer.vue';
-import TopBar from './topbar.vue';
-import SideBar from './sidebar.vue';
+import Footer from './Footer.vue';
+import TopBar from './TopBar.vue';
+import SideBar from './SideBar.vue';
 export default {
 	name: "Layout",
   components: {

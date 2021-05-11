@@ -6,7 +6,7 @@
 
 <script>
 import routes from './routes.vue'
-import Layout from './components/layout.vue';
+import Layout from './components/Layout.vue';
 
 // @ts-check
 export default {
