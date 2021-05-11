@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/santiq/crypto-bet.git"
   },
+  "context": "browser",
+  "includeNodeModules": ["web3"],
+  "scopeHoist": false,
   "author": "",
   "license": "ISC",
   "bugs": {

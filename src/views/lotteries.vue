@@ -136,6 +136,7 @@
 import { mapState } from 'vuex';
 import lotteryService from '../services/lottery';
 export default {
+  name: 'lotteries',
   data() {
     return {
       // Not so funny to write them by hand
