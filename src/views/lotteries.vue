@@ -4,22 +4,22 @@
       <div class="card">
         <div class="content">
           <div class="row">
-            <div class="col-xs-5">
+            <div class="col-sm-5">
               <div class="icon-big icon-warning text-center">
-                <i class="ti-server"></i>
+                <i class="fas fa-coins"></i>
               </div>
             </div>
-            <div class="col-xs-7">
+            <div class="col-sm-7">
               <div class="numbers">
                 <p>Lottery Prize</p>
-                Ether {{ lottery.prize }}
+                {{ lottery.prize }}
               </div>
             </div>
           </div>
           <div class="footer">
             <hr>
             <div class="stats">
-              <i class="ti-reload"></i> Updated now
+              <i class="fas fa-sync"></i> Updated now
             </div>
           </div>
         </div>
@@ -29,12 +29,12 @@
       <div class="card">
         <div class="content">
           <div class="row">
-            <div class="col-xs-5">
+            <div class="col-sm-5">
               <div class="icon-big icon-warning text-center">
-                <i class="ti-server"></i>
+                <i class="fas fa-award"></i>
               </div>
             </div>
-            <div class="col-xs-7">
+            <div class="col-sm-7">
               <div class="numbers">
                 <p>Last winning ticket</p>
                 <p> {{ lottery.winningTicket }} </p>
@@ -44,7 +44,7 @@
           <div class="footer">
             <hr>
             <div class="stats">
-              <i class="ti-reload"></i> Updated now
+              <i class="fas fa-sync"></i> Updated now
             </div>
           </div>
         </div>
@@ -54,22 +54,23 @@
       <div class="card">
         <div class="content">
           <div class="row">
-            <div class="col-xs-5">
+            <div class="col-sm-5">
               <div class="icon-big icon-success text-center">
-                <i class="ti-wallet"></i>
+                <i class="fab fa-ethereum"></i>
               </div>
             </div>
-            <div class="col-xs-7">
+            <div class="col-sm-7">
               <div class="numbers">
                 <p>Ticket Cost</p>
-                Ether {{ lottery.ticketCost }}
+                {{ lottery.ticketCost }}
               </div>
             </div>
           </div>
           <div class="footer">
             <hr>
             <div class="stats">
-              <i class="ti-calendar"></i> Last day
+              <i class="fas fa-sync"></i>
+              Last day
             </div>
           </div>
         </div>
@@ -85,15 +86,17 @@
           </h4>
         </div>
         <div class="card-body">
-          <div class="col-2">
-            <div class="card" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
+          <div class="d-flex flex-wrap">
+            <div class="card m-3" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
               <div class="card-header">
-                <h4 class="card-title">
-                  {{ ticket._id }} - {{ ticket.name }}
-                </h4>
+                <h5 class="card-title">
+                  {{ ticket._id }}
+                  <br/>
+                  {{ ticket.name }}
+                </h5>
               </div>
-              <div class="form-group">
-                <button class="btn btn-success" :disabled="!wallet" @click="() => buyTicket(ticket)"> Buy </button>
+              <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-large btn-success" :disabled="!wallet" @click="() => buyTicket(ticket)"> Buy </button>
               </div>
             </div>
           </div>

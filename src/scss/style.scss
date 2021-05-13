@@ -38,3 +38,39 @@ footer nav ul a:not(.btn) {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.card {
+  border-radius: 6px;
+  box-shadow: 0 2px 2px rgb(204 197 185 / 50%);
+  background-color: #FFFFFF;
+  color: #252422;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+
+  .content {
+    padding: 15px 15px 10px 15px;
+  }
+
+  .numbers {
+    font-size: 2em;
+    text-align: right;
+  }
+
+  .footer {
+    padding: 0;
+    line-height: 30px;
+  }
+  .stats {
+    color: #a9a9a9;
+    font-weight: 300;
+    font-size: 14px;
+  }
+  .icon-big {
+    font-size: 3em;
+    min-height: 64px;
+  }
+  .numbers p {
+    font-size: 16px;
+  }
+}
