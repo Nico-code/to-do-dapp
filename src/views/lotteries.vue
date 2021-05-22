@@ -121,6 +121,21 @@
             <input class="form-control" :disabled="!wallet" v-model="winningTicket" type="text" placeholder="ticket" />
             <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Save </button>
           </div>
+          <div class="form-group">
+            <label>Change Admin</label>
+            <input class="form-control" :disabled="!wallet" v-model="winningTicket" type="text" placeholder="ticket" />
+            <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Save </button>
+          </div>
+          <div class="form-group">
+            <label>Contract balance (ether)</label>
+            <span> {{ 'Ethereum padreee 0' }} </span>
+            <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Get </button>
+          </div>
+          <div class="form-group">
+            <label>Withdraw funds</label>
+            <input class="form-control" :disabled="!wallet" v-model="winningTicket" type="text" placeholder="ticket" />
+            <button class="btn btn-danger" :disabled="!wallet" @click="setWinningTicket"> Save </button>
+          </div>
         </div>
       </div>
     </div>

@@ -19,11 +19,11 @@
           </a>
         </li>
       </router-link>
-      <router-link to="/futbol" custom v-slot="{ isActive, navigate, href }">
+      <router-link to="/market" custom v-slot="{ isActive, navigate, href }">
         <li :class="{ 'active': isActive }">
           <a :href="href" @click="navigate">
-            <i class="fas fa-futbol"></i>
-            <p>Partidos</p>
+            <i class="fas fa-shopping-cart"></i>
+            <p>Swap</p>
           </a>
         </li>
       </router-link>
