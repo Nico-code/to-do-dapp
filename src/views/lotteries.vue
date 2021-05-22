@@ -37,7 +37,7 @@
             <div class="col-sm-7">
               <div class="numbers">
                 <p>Last winning ticket</p>
-                <p> {{ lottery.winningTicket }} </p>
+                {{ lottery.winningTicket }}
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
         </div>
         <div class="card-body">
           <div class="d-flex flex-wrap">
-            <div class="card m-3" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
+            <div class="card m-3  card-ticket" v-for="(ticket, i) in lotteryTickets" :key="`a-ticket-${i}`">
               <div class="card-header">
                 <h5 class="card-title">
                   {{ ticket._id }}
@@ -111,15 +111,6 @@
           </h4>
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <button class="btn btn-success" :disabled="!wallet" @click="getTicketCost"> Get ticket cost </button>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-success" :disabled="!wallet" @click="getWinningTicket"> Get last winning ticket </button>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-success" :disabled="!wallet" @click="getLotteryPrize"> Get lottery prize </button>
-          </div>
           <div class="form-group">
             <label>Set ticket cost (in Ether)</label>
             <input class="form-control" :disabled="!wallet" v-model="newTicketCost" type="text" placeholder="cost" />
