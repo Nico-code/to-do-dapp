@@ -16,7 +16,7 @@ contract Lottery {
 
   uint public prize;
 
-  address admin;
+  address public admin;
 
   constructor(uint _ticketCost) {
     admin = msg.sender;
@@ -27,6 +27,11 @@ contract Lottery {
   modifier onlyAdmin() {
     require(msg.sender == admin, 'Not authorized');
     _;
+  }
+
+  function transferAdmin(address newAdmin) public onlyAdmin returns (bool result) {
+    admin = newAdmin;
+    return true;
   }
 
   function setWinningTicket(string memory _winningTicket) public onlyAdmin returns (bool result){
@@ -69,6 +74,11 @@ contract Lottery {
     }
     delete selectedTickets;
     prize = 0;
+  }
+
+  function withdraw() public onlyAdmin {
+    address payable adminAddress = payable(msg.sender);
+    adminAddress.transfer(address(this).balance);
   }
 
 }
