@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "contracts": "rm -rf build && truffle compile && truffle migrate",
     "start:dev": "__VUE_PROD_DEVTOOLS__=true parcel index.html",
     "start": "parcel index.html",
     "blockchain": "ganache-cli --db blockchain -d -i 123456",
