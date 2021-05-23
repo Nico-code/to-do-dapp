@@ -2,11 +2,11 @@ import marketService from '../../services/market';
 
 export default {
   setPrice: async ({ commit, dispatch }, {}) => {
-    const cost = await marketService.getPrice();
-    commit('setPrice', cost)
+    const price = await marketService.getPrice();
+    commit('setPrice', price)
   },
   setLiquidity: async ({ commit, dispatch }, {}) => {
-    const prize = await marketService.getLiquidity();
-    commit('setLiquidity', prize)
+    const liquidity = await marketService.getLiquidity();
+    commit('setLiquidity', liquidity)
   }
 }

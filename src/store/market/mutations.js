@@ -1,13 +1,13 @@
 export default {
   setPrice(state, price) {
-    state.lottery = {
-      ...state,
+    state.market = {
+      ...state.market,
       price,
     }
   },
   setLiquidity(state, liquidity) {
-    state.lottery = {
-      ...state,
+    state.market = {
+      ...state.market,
       liquidity
     }
   }

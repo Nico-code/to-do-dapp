@@ -11,7 +11,7 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <router-link to="/lottery" custom v-slot="{ isActive, navigate, href }">
+      <router-link to="/" custom v-slot="{ isActive, navigate, href }">
         <li :class="{ 'active': isActive }">
           <a :href="href" @click="navigate">
             <i class="fas fa-ticket-alt"></i>

@@ -4,5 +4,7 @@ export default {
     dispatch('lottery/setTicketCost', {}, { root: true });
     dispatch('lottery/setLotteryPrize', {}, { root: true });
     dispatch('lottery/setLastWinningTicket', {}, { root: true });
+    dispatch('market/setPrice', {}, { root: true });
+    dispatch('market/setLiquidity', {}, { root: true });
   },
 }

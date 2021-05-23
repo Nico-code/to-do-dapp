@@ -28,7 +28,7 @@
 import { mapState } from 'vuex';
 import quiniMarketService from '../services/market';
 export default {
-  name: 'Swap',
+  name: 'Market',
   data() {
     return {
       wei: 10,

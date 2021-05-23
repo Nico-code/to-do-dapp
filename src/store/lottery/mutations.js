@@ -1,19 +1,19 @@
 export default {
   setTicketCost(state, ticketCost) {
     state.lottery = {
-      ...state,
+      ...state.lottery,
       ticketCost,
     }
   },
   setLotteryPrize(state, prize) {
     state.lottery = {
-      ...state,
+      ...state.lottery,
       prize
     }
   },
   setLastWinningTicket(state, winningTicket) {
     state.lottery = {
-      ...state,
+      ...state.lottery,
       winningTicket
     }
   },
