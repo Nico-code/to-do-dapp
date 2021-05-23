@@ -26,7 +26,7 @@ npm run blockchain
 
 # Run truffle compile && migrate
 ```
-truffle compile && truffle migrate
+npm run contracts
 ```
 
 ## Project should be available on localhost:1234
