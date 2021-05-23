@@ -2,6 +2,7 @@
 // @ts-check
 import lotteries from "./views/lotteries.vue";
 import market from "./views/market.vue";
+import collectable from "./views/collectable.vue";
 
 const routes = [
     {
@@ -11,7 +12,11 @@ const routes = [
     {
 			path: "/market",
 			component: market,
-    }
+    },
+    {
+			path: "/collectable",
+			component: collectable,
+    },
   ]
 
 export default routes;

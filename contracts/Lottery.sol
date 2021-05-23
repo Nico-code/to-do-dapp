@@ -1,11 +1,13 @@
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.7.0 <0.9.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Lottery
  * @dev
  */
-contract Lottery {
+contract Lottery is Ownable {
 
   mapping (string => address payable[]) tickets;
   string[] public selectedTickets;
@@ -16,25 +18,12 @@ contract Lottery {
 
   uint public prize;
 
-  address public admin;
-
   constructor(uint _ticketCost) {
-    admin = msg.sender;
     ticketCost = _ticketCost;
     prize = 0;
   }
 
-  modifier onlyAdmin() {
-    require(msg.sender == admin, 'Not authorized');
-    _;
-  }
-
-  function transferAdmin(address newAdmin) public onlyAdmin returns (bool result) {
-    admin = newAdmin;
-    return true;
-  }
-
-  function setWinningTicket(string memory _winningTicket) public onlyAdmin returns (bool result){
+  function setWinningTicket(string memory _winningTicket) public onlyOwner returns (bool result){
     // Set winning ticket
     winningTicket = _winningTicket;
     // No winners for this ticket
@@ -53,7 +42,7 @@ contract Lottery {
     return true;
   }
 
-  function setTicketCost(uint _ticketCost) public onlyAdmin returns (bool result) {
+  function setTicketCost(uint _ticketCost) public onlyOwner returns (bool result) {
     ticketCost = _ticketCost;
     return true;
   }
@@ -68,7 +57,7 @@ contract Lottery {
     return true;
   }
 
-  function resetLottery() public onlyAdmin {
+  function resetLottery() public onlyOwner {
     for (uint i = 0; i<selectedTickets.length; i++) {
       delete tickets[selectedTickets[i]];
     }
@@ -76,7 +65,7 @@ contract Lottery {
     prize = 0;
   }
 
-  function withdraw() public onlyAdmin {
+  function withdraw() public onlyOwner {
     address payable adminAddress = payable(msg.sender);
     adminAddress.transfer(address(this).balance);
   }

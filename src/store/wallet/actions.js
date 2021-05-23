@@ -6,5 +6,6 @@ export default {
     dispatch('lottery/setLastWinningTicket', {}, { root: true });
     dispatch('market/setPrice', {}, { root: true });
     dispatch('market/setLiquidity', {}, { root: true });
+    dispatch('collectable/setTotalSupply', {}, { root: true });
   },
 }

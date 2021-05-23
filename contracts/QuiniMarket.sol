@@ -9,11 +9,11 @@ contract QuiniMarket {
   address private supplyOwner;
 
   constructor(
-       QuiniToken _token
-    ) {
-        token = _token;
-        supplyOwner = msg.sender;
-    }
+    QuiniToken _token
+  ) {
+    token = _token;
+    supplyOwner = msg.sender;
+  }
 
   function buy() public payable {
     require(msg.value > 0, "You need to send some ether");
@@ -33,7 +33,7 @@ contract QuiniMarket {
   }
 
   function getBalanceAvailable() public view returns(uint256) {
-      return token.balanceOf(supplyOwner);
+    return token.balanceOf(supplyOwner);
   }
 
 }

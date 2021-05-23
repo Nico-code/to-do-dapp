@@ -27,6 +27,14 @@
           </a>
         </li>
       </router-link>
+      <router-link to="/collectable" custom v-slot="{ isActive, navigate, href }">
+        <li :class="{ 'active': isActive }">
+          <a :href="href" @click="navigate">
+            <i class="fas fa-gift"></i>
+            <p>Collectables</p>
+          </a>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>

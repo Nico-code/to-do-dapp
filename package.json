@@ -36,6 +36,7 @@
     "parcel": "2.0.0-nightly.679"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.1.0",
     "@truffle/hdwallet-provider": "^1.4.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
