@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import quiniMarketService from '../services/market';
 export default {
   name: 'Market',
@@ -35,14 +35,25 @@ export default {
     }
   },
   methods: {
+    ...mapActions('market', ['setPrice', 'setLiquidity']),
     async buy() {
       try {
         await quiniMarketService.buy(this.wei)
+        await this.updateInfo();
       } catch(e) {
         console.log('Error swaping tokens');
         console.log(e);
       }
+    },
+    async updateInfo() {
+      await Promise.all([
+        this.setPrice({}, {}),
+        this.setLiquidity({}, {})
+      ])
     }
+  },
+  mounted() {
+    this.updateInfo();
   },
   computed: {
     ...mapState('wallet', ['wallet']),
