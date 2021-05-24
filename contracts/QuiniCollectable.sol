@@ -13,24 +13,56 @@ contract QuiniCollectable is ERC721Enumerable, ERC721URIStorage, Ownable {
 
   mapping (uint256 => uint256) public collectablePrice;
 
-  uint256 private _fee;
+  uint256 private _txFee;
+
+  uint256 private _mintFee;
 
   constructor() ERC721("QuiniCollectable", "QC") {}
 
-  function fee() public view virtual returns (uint256) {
-    return _fee;
+  function txFee() public view virtual returns (uint256) {
+    return _txFee;
   }
 
-  function mintCollectable(address account, string memory _tokenURI)
+  function mintFee() public view virtual returns (uint256) {
+    return _mintFee;
+  }
+
+  function setMintFee(uint _newFee) public onlyOwner returns(bool) {
+    _mintFee = _newFee;
+    return true;
+  }
+
+  function setTxFee(uint _newFee) public onlyOwner returns(bool) {
+    _txFee = _newFee;
+    return true;
+  }
+
+  function adminMintCollectable(string memory _tokenURI)
     public
     onlyOwner
     returns (uint256)
   {
+    _tokenIds.increment();
 
     uint256 newItemId = _tokenIds.current();
-    _safeMint(account, _tokenIds.current());
+    _safeMint(msg.sender, _tokenIds.current());
     _setTokenURI(newItemId, _tokenURI);
+
+    return newItemId;
+  }
+
+  function mintCollectable(string memory _tokenURI)
+    public
+    payable
+    returns (uint256)
+  {
+    require(msg.value >= _mintFee, 'Insuficient funds');
+
     _tokenIds.increment();
+
+    uint256 newItemId = _tokenIds.current();
+    _safeMint(msg.sender, _tokenIds.current());
+    _setTokenURI(newItemId, _tokenURI);
 
     return newItemId;
   }
@@ -54,7 +86,7 @@ contract QuiniCollectable is ERC721Enumerable, ERC721URIStorage, Ownable {
     address seller = ownerOf(_tokenId);
     _transfer(seller, msg.sender, _tokenId);
     collectablePrice[_tokenId] = 0; // not for sale anymore
-    payable(seller).transfer(msg.value - msg.value * this.fee()); // send the ETH to the seller
+    payable(seller).transfer(msg.value - msg.value * this.txFee()); // send the ETH to the seller
   }
 
   function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
@@ -84,6 +116,11 @@ contract QuiniCollectable is ERC721Enumerable, ERC721URIStorage, Ownable {
     override(ERC721, ERC721Enumerable)
   {
     super._beforeTokenTransfer(from, to, tokenId);
+  }
+
+  function withdraw() public onlyOwner {
+    address payable adminAddress = payable(msg.sender);
+    adminAddress.transfer(address(this).balance);
   }
 
 }

@@ -2,9 +2,10 @@
 
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./QuiniToken.sol";
 
-contract QuiniMarket {
+contract QuiniMarket is Ownable {
   QuiniToken private token;
   address private supplyOwner;
 
@@ -34,6 +35,11 @@ contract QuiniMarket {
 
   function getBalanceAvailable() public view returns(uint256) {
     return token.balanceOf(supplyOwner);
+  }
+
+  function withdraw() public onlyOwner {
+    address payable adminAddress = payable(msg.sender);
+    adminAddress.transfer(address(this).balance);
   }
 
 }

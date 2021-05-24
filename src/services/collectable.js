@@ -29,13 +29,40 @@ const QuiniCollectableContractABI = {
     const QuiniCollectableInstance = await this.getConstractInstance();
     return QuiniCollectableInstance.methods.totalSupply().call();
   },
-  async getTokenByIndex(index) {
+  async getTxFee() {
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    return QuiniCollectableInstance.methods.txFee().call();
+  },
+  async getMintFee() {
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    return QuiniCollectableInstance.methods.mintFee().call();
+  },
+  async setTxFee(fee) {
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    return QuiniCollectableInstance.methods.setTxFee(fee).send({ from: wallet.address, value: 0 });
+  },
+  async setMintFee(fee) {
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    return QuiniCollectableInstance.methods.setMintFee(fee).send({ from: wallet.address, value: 0 });
+  },
+  async getTokenIdByIndex(index) {
     const QuiniCollectableInstance = await this.getConstractInstance();
     return QuiniCollectableInstance.methods.tokenByIndex(index).call();
   },
-  async mint(nftURI) {
+  async getTokenURIById(id) {
     const QuiniCollectableInstance = await this.getConstractInstance();
-    return QuiniCollectableInstance.methods.mintCollectable(wallet.address, nftURI).send({ from: wallet.address, value: 0 });
+    return QuiniCollectableInstance.methods.tokenURI(id).call();
+  },
+  async adminMint(nftURI) {
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    console.log('Sending: ', nftURI);
+    return QuiniCollectableInstance.methods.adminMintCollectable(nftURI).send({ from: wallet.address, value: 0 });
+  },
+
+  async mint(nftURI) {
+    const mintFee = await this.getMintFee();
+    const QuiniCollectableInstance = await this.getConstractInstance();
+    return QuiniCollectableInstance.methods.mintCollectable(nftURI).send({ from: wallet.address, value: mintFee });
   },
 }
 export default QuiniCollectableContractABI;

@@ -7,5 +7,7 @@ export default {
     dispatch('market/setPrice', {}, { root: true });
     dispatch('market/setLiquidity', {}, { root: true });
     dispatch('collectable/setTotalSupply', {}, { root: true });
+    dispatch('collectable/setMintFee', {}, { root: true });
+    dispatch('collectable/setTxFee', {}, { root: true });
   },
 }
