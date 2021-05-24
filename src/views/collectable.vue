@@ -31,7 +31,7 @@
           <div class="row">
             <div class="col-sm-5">
               <div class="icon-big icon-warning text-center">
-                <i class="fas fa-gifts"></i>
+                <i class="fas fa-percent"></i>
               </div>
             </div>
             <div class="col-sm-7">
@@ -56,7 +56,7 @@
           <div class="row">
             <div class="col-sm-5">
               <div class="icon-big icon-warning text-center">
-                <i class="fas fa-gifts"></i>
+                <i class="fab fa-ethereum"></i>
               </div>
             </div>
             <div class="col-sm-7">
